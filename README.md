@@ -28,3 +28,15 @@ Um scanner de portas simples em Python, para verificar se portas estão abertas 
    ```bash
    git clone https://github.com/Cesar-Andres-Puma/simple-port-scanner.git
    cd simple-port-scanner
+
+2. Execute o script:
+
+python scanner.py
+
+3. Exemplo de uso:
+
+Digite o IP: 192.168.0.1
+Digite a porta (ou portas separadas por vírgulas): 22,80,443
+Porta 22 aberta em 192.168.0.1
+Porta 80 fechada em 192.168.0.1
+Porta 443 aberta em 192.168.0.1
