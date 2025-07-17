@@ -1,42 +1,50 @@
-Esse é apenas um pequeno projeto que tive como base do curso Desec, apenas para fins educacionais.
-
 # Simple Port Scanner
 
-Um scanner de portas simples em Python, para verificar se portas estão abertas ou fechadas em um IP informado. Ideal para fins educacionais e testes básicos em redes locais.
+Um scanner de portas simples em Python que verifica se portas estão abertas ou fechadas em um IP informado.
 
 ---
 
 ## Funcionalidades
 
-- Suporte a múltiplas portas (digitadas separadas por vírgula)
-- Detecta se a porta está aberta ou fechada usando conexão TCP
-- Tempo de timeout configurado para 1 segundo
-- Exibe o sistema operacional detectado no início
+- Verifica múltiplas portas TCP de um host
+- Opção para escanear portas padrão comuns
+- Permite entrada personalizada de portas pelo usuário
+- Detecta o sistema operacional onde o script está rodando
+- Timeout de conexão configurado para 1 segundo
 
 ---
 
 ## Requisitos
 
 - Python 3.x
-- Sistema operacional Linux, Windows ou macOS
+- Conexão de rede para testar portas remotas
 
 ---
 
 ## Como usar
 
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/Cesar-Andres-Puma/simple-port-scanner.git
-   cd simple-port-scanner
+1. Clone o repositório:
 
-2. Execute o script:
+```bash
+git clone https://github.com/Cesar-Andres-Puma/simple-port-scanner.git
+cd simple-port-scanner
 
-python scanner.py
+2.Execute o script
 
-3. Exemplo de uso:
+- python scanner.py
 
-Digite o IP: 192.168.0.1
-Digite a porta (ou portas separadas por vírgulas): 22,80,443
-Porta 22 aberta em 192.168.0.1
-Porta 80 fechada em 192.168.0.1
-Porta 443 aberta em 192.168.0.1
+3. Siga as instruções na tela:
+
+- Informe o Ip alvo
+- Escolha se quer usar as portas padrão ou digitar suas próprias portas (separadas por espaço)
+
+4.Sistema operacional detectado: Linux
+- Digite o IP: 192.168.0.1
+- Deseja verificar portas padrão? (s/n): s
+- Verificando portas: [20, 21, 22, 23, 80, 139, 445, 443, 3389, 5800, 5900]
+- Porta 20 fechada em 192.168.0.1
+- Porta 21 fechada em 192.168.0.1
+- Porta 22 aberta em 192.168.0.1
+
+#Aviso
+- Este script é para fins educacionais e deve ser usado apenas em redes e dispositivos autorizado
