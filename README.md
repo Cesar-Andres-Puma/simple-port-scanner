@@ -5,6 +5,7 @@ Um scanner de portas TCP concorrente e eficiente, construído em Python, ideal p
 ## 🚀 Principais Funcionalidades
 
 -   **Verificação Rápida e Concorrente:** Utiliza múltiplas threads para escanear dezenas de portas simultaneamente, tornando a verificação muito mais rápida que os métodos sequenciais.
+-   **Captura de Banners (Banner Grabbing):** Tenta identificar o serviço e a versão que está rodando na porta aberta, fornecendo mais contexto sobre o alvo.
 -   **Scan de IP Local Automático:** Detecta automaticamente o IP da sua máquina para facilitar verificações na sua própria rede.
 -   **Interface de Usuário Ágil:** Permite o uso da tecla `Enter` para selecionar as opções padrão, agilizando o processo.
 -   **Relatório Final Limpo:** Exibe uma lista clara e ordenada apenas com as portas que foram encontradas abertas ao final da verificação.
@@ -50,7 +51,7 @@ Um scanner de portas TCP concorrente e eficiente, construído em Python, ideal p
 
 ## 📊 Exemplo de Saída
 
-A saída mostra as portas abertas em tempo real e, ao final, apresenta um resumo limpo.
+A saída mostra as portas abertas em tempo real e, ao final, apresenta um resumo limpo com os banners capturados.
 
 ## ⚠️ Aviso Ético
 
