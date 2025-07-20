@@ -51,3 +51,7 @@ Um scanner de portas TCP concorrente e eficiente, construído em Python, ideal p
 ## 📊 Exemplo de Saída
 
 A saída mostra as portas abertas em tempo real e, ao final, apresenta um resumo limpo.
+
+## ⚠️ Aviso Ético
+
+Este script foi desenvolvido para fins educacionais e de estudo. Utilize-o apenas em redes e sistemas para os quais você tenha **permissão explícita**. Realizar varreduras de portas em sistemas de terceiros sem autorização é uma atividade antiética e pode ser ilegal.
