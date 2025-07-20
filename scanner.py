@@ -2,9 +2,8 @@ import socket
 import threading
 from queue import Queue
 
-# Global variables
 q = Queue()
-open_ports = []
+open_ports_info= {}
 print_lock = threading.Lock()
 
 def worker(ip):
@@ -12,23 +11,34 @@ def worker(ip):
         port = q.get()
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.settimeout(1)
-            result = s.connect_ex((ip, port))
-            if result == 0:
-                with print_lock:
-                    print(f"Porta {port:<5} aberta")
-                    open_ports.append(port)
-        q.task_done()
+            try:
+                result = s.connect_ex((ip, port))
+                if result == 0:
+                 banner = ""
+                 try:
+                    banner = s.recv(1024).decode('utf-8', errors='ignore').strip()
+                 except socket.error:
+                    pass
+                 with print_lock:
+                    print(f"Porta {port:<5} \033[92mABERTA\033[0m  | Banner: {banner}")
+                    open_ports_info[port] = banner
+            except socket.error:
+                pass
+            finally:
+                s.close()
+                q.task_done()
 
 def get_default_ports():
-    return [20, 21, 22, 23, 80, 139, 445, 443, 3389, 5800, 5900]
+    return [21, 22, 25, 53, 80, 110, 143, 443, 445, 3306, 3389, 5432, 5900, 8080, 8443]
 
 def get_ports_from_user():
-    ports_input = input("Digite as portas (separadas por espaço): ")
-    try:
-        return [int(port) for port in ports_input.split()]
-    except ValueError:
+    while True:
+     ports_input = input("Digite as portas (separadas por espaço): ")
+     try:
+        return list(set([int(port) for port in ports_input.split()]))
+     except ValueError:
         print("Entrada inválida. Certifique-se de digitar apenas números separados por espaço.")
-        return get_ports_from_user()
+        
 
 def get_local_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -50,7 +60,7 @@ def scan_ports(ip, ports, num_threads=100):
     q.join()
 
 def main():
-    print("--- python-port-scanner ---")
+    print("--- python-port-scanner com banner grabbing ---")
     try:
         scan_local_input = input("Deseja scanear o Ip local? (Pressione Enter para Sim, 'n' para Nao): ").strip().lower()
         if scan_local_input == 'n':
@@ -72,9 +82,9 @@ def main():
         print("\n" + "="*30)
         print("  Verificação Concluída")
         print("="*30)
-        if open_ports:
-            open_ports.sort()
-            print(f"Portas abertas encontradas: {open_ports}")
+        if open_ports_info:
+            for port in sorted(open_ports_info.keys()):
+                 print(f"Porta {port:<5} | Serviço: {open_ports_info[port]}")
         else:
             print("Nenhuma porta aberta foi encontrada.")
     except socket.gaierror:
